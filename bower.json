@@ -1,0 +1,7 @@
+{
+  "name": "home-sweet-home",
+  "version": "0.0.1",
+  "dependencies": {
+    "semantic": "semantic-ui#^2.2.10"
+  }
+}
