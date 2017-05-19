@@ -2,7 +2,7 @@
     <form @submit="submitInputKeyword">
         <div class="ui action input">
             <input minlength="1" :maxlength="this.$store.getters.state.maxInputCharacters" v-model="keyword" @input="updateInputKeyword" type="text" value="">
-            <button :disabled="disableSearch" type="submit" class="ui teal right labeled icon button primary">
+            <button @click="submitInputKeyword" :disabled="disableSearch" type="button" class="ui teal right labeled icon button primary">
                 <i class="search icon"></i>
                 <span>输入搜索关键词</span>
             </button>

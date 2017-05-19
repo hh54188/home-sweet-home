@@ -5,6 +5,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
+        loading: false,
+
         inputKeyword: '',
         maxInputCharacters: 20,
 
@@ -30,8 +32,8 @@ export default new Vuex.Store({
                 }
             ],
             pagination: {
-                total: 10,
-                cur: 1
+                total: 15,
+                cur: 10
             }
         },
         searchResult: {
@@ -43,6 +45,9 @@ export default new Vuex.Store({
         }
     },
     mutations: {
+        UPDATE_LOADING_STATE(state, val) {
+            state.loading = val;
+        },
         UPDATE_INPUT_KEYWORD(state, text) {
             state.inputKeyword = text;
         },
@@ -61,16 +66,35 @@ export default new Vuex.Store({
         }
     },
     actions: {
+        fetch({state, commit}) {
+            commit('UPDATE_LOADING_STATE', true);
+            $.ajax({
+                url: '/api/search',
+                method: 'get',
+                dataType: 'json',
+                timeout: 1000 * 2,
+                data: {
+                    keywords: state.keywords,
+                    page: 1
+                },
+                success: function (data, textStatus, jqXHR) {
+
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+
+                },
+                complete: function (jqXHR, textStatus) {
+                    commit('UPDATE_LOADING_STATE', false);                    
+                }
+
+            })
+        },
         updateInputKeyword ({commit}, text) {
             commit('UPDATE_INPUT_KEYWORD', text);
         },
-        submitInputKeyword({commit}) {
+        submitInputKeyword({dispatch, commit}) {
             commit('SUBMIT_INPUT_KEYWORD');
-            // 弹出加载框
-            // fetch 搜索结果
-                // - 取消加载框
-                // - 成功：填充搜索结果
-                // - 失败（超时）：提示用户
+            dispatch('fetch');
         },
         deleteKeyword({commit}, word) {
             commit('DELETE_KEYWORD', word);

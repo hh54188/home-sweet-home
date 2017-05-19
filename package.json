@@ -2,6 +2,7 @@
   "name": "home-sweet-home",
   "version": "0.0.1",
   "dependencies": {
+    "express": "^4.15.3",
     "vue": "^2.3.3",
     "vuex": "^2.3.1"
   },
@@ -16,7 +17,8 @@
     "vue-template-compiler": "^2.3.3"
   },
   "scripts": {
-    "dev": "webpack --config webpack_config/webpack.config.dev.js"
+    "dev": "webpack --config webpack_config/webpack.config.dev.js",
+    "server": "node server/server.js"
   },
   "author": "liguangyi, liguangyi08@gmail.com"
 }

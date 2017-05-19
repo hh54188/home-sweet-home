@@ -1,6 +1,6 @@
 <template>
-    <div class="column ten wide ui form">
-        <!--<MyTitle></MyTitle>-->
+    <div v-bind:class="{'loading': this.$store.getters.state.loading}" class="column ten wide ui form">
+        <MyTitle></MyTitle>
         <div class="field">
             <SearchInput></SearchInput>
         </div>
