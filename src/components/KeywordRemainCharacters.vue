@@ -1,5 +1,5 @@
 <template>
-    <div class="ui pointing label">
+    <div v-show="showReminder" class="ui pointing label">
         还能输入<span>{{remainCharacters}}</span>个字符
     </div>
 </template>
@@ -8,6 +8,13 @@
     export default {
         name: 'KeywordRemainCharacters',
         computed: {
+            showReminder() {
+                let state = this.$store.getters.state;                
+                if (state.maxInputCharacters - state.inputKeyword.length < 10) {
+                    return true;
+                }
+                return false;
+            },            
             remainCharacters() {
                 let state = this.$store.getters.state;
                 return state.maxInputCharacters - state.inputKeyword.length;

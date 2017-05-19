@@ -1,7 +1,7 @@
 <template>
     <form @submit="submitInputKeyword">
         <div class="ui action input">
-            <input v-model="keyword" @input="updateInputKeyword" type="text" value="">
+            <input minlength="1" :maxlength="this.$store.getters.state.maxInputCharacters" v-model="keyword" @input="updateInputKeyword" type="text" value="">
             <button :disabled="disableSearch" type="submit" class="ui teal right labeled icon button primary">
                 <i class="search icon"></i>
                 <span>输入搜索关键词</span>
@@ -21,6 +21,10 @@
         },
         methods: {
             updateInputKeyword(event) {
+                let state = this.$store.getters.state;
+                let maxInputCharacters = state.maxInputCharacters;
+                let word = event.target.value.slice(0, maxInputCharacters);
+                
                 this.$store.dispatch('updateInputKeyword', event.target.value);
             },
             submitInputKeyword(event) {

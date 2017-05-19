@@ -1,14 +1,16 @@
 <template>
     <div class="column ten wide ui form">
-        <MyTitle></MyTitle>
+        <!--<MyTitle></MyTitle>-->
         <div class="field">
             <SearchInput></SearchInput>
         </div>
+        
         <KeywordsList></KeywordsList>
 
         <div id="my-tab" class="ui top attached tabular menu">
             <a class="active item" data-tab="latest"><span>最新</span></a>
             <a class="item" data-tab="search"><span>搜索结果</span></a>
+            <!--<a class="item" data-tab="fav"><span>收藏</span></a>-->
         </div>
         <div class="ui bottom attached active tab segment" data-tab="latest">
             <List :data="this.$store.getters.state.latestResult.data"></List>
@@ -18,6 +20,10 @@
             <List></List>
             <Pagination></Pagination>     
         </div>
+        <!--<div class="ui bottom attached tab segment" data-tab="fav">
+            <List></List>
+            <Pagination></Pagination>
+        </div>-->
     </div>
 </template>
 

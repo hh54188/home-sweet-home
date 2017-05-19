@@ -14,7 +14,7 @@ export default new Vuex.Store({
         latestResult: {
             data: [
                 {
-                    fav: false,
+                    fav: true,
                     title: '这是测试链接',
                     link: 'http://baidu.com'
                 },
