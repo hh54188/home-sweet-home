@@ -14,11 +14,11 @@
         </div>
         <div class="ui bottom attached active tab segment" data-tab="latest">
             <List :data="this.$store.getters.state.latestResult.data"></List>
-            <Pagination></Pagination>
+            <Pagination :data="this.$store.getters.state.latestResult.pagination"></Pagination>
         </div>
         <div class="ui bottom attached tab segment" data-tab="search">
             <List></List>
-            <Pagination></Pagination>     
+            <Pagination :data="this.$store.getters.state.searchResult.pagination"></Pagination>     
         </div>
         <!--<div class="ui bottom attached tab segment" data-tab="fav">
             <List></List>
