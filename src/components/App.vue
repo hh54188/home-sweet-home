@@ -3,16 +3,15 @@
         <MyTitle></MyTitle>
         <div class="field">
             <SearchInput></SearchInput>
-            <KeywordRemainCharacters></KeywordRemainCharacters> 
         </div>
-            <KeywordsList></KeywordsList>
+        <KeywordsList></KeywordsList>
 
         <div id="my-tab" class="ui top attached tabular menu">
             <a class="active item" data-tab="latest"><span>最新</span></a>
             <a class="item" data-tab="search"><span>搜索结果</span></a>
         </div>
         <div class="ui bottom attached active tab segment" data-tab="latest">
-            <List></List>
+            <List :data="this.$store.getters.state.latestResult.data"></List>
             <Pagination></Pagination>
         </div>
         <div class="ui bottom attached tab segment" data-tab="search">
@@ -41,7 +40,6 @@
             Pagination
         },
         mounted: function () {
-            // console.log(this.$store);
             $('#my-tab .item').tab();
         }
     }

@@ -1,13 +1,16 @@
 <template>
     <div v-show="showList" class="ui segment">
         <div class="ui labels">
-            <a class="ui label red">
+            <a class="ui label blue">
                 <span>还能输入{{remainWordsCount}}个关键词</span>
             </a>        
-            <a v-for="keyword in this.$store.getters.state.keywords" class="ui label">
+            <a v-for="keyword in this.$store.getters.state.keywords" @click="deleteKeyword(keyword)"  class="ui label">
                 <span>{{keyword}}</span>
-                <i :data-word="keyword" @click="deleteKeyword(keyword)" class="icon close"></i>
+                <i :data-word="keyword" class="icon close"></i>
             </a>
+            <a @click="deleteAllKeywords" class="ui label red">
+                <span>删除全部</span>
+            </a>            
         </div>
     </div>
 </template>
@@ -17,7 +20,10 @@
         name: "KeywordsList",
         methods: {
             deleteKeyword(word) {
-                console.log(word);
+                this.$store.dispatch('deleteKeyword', word);
+            },
+            deleteAllKeywords() {
+                this.$store.dispatch('deleteAllKeywords');                
             }
         },
         computed: {
