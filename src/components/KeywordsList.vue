@@ -4,7 +4,7 @@
             <a class="ui label blue">
                 <span>还能输入{{remainWordsCount}}个关键词</span>
             </a>        
-            <a v-for="keyword in this.$store.getters.state.keywords" @click="deleteKeyword(keyword)"  class="ui label">
+            <a v-for="keyword in this.$store.getters.keywords" @click="deleteKeyword(keyword)"  class="ui label">
                 <span>{{keyword}}</span>
                 <i :data-word="keyword" class="icon close"></i>
             </a>
@@ -28,14 +28,14 @@
         },
         computed: {
             showList() {
-                let state = this.$store.getters.state;
+                let state = this.$store.getters;
                 if (state.keywords.length) {
                     return true;
                 }
                 return false;
             },
             remainWordsCount() {
-                let state = this.$store.getters.state;
+                let state = this.$store.getters;
                 return state.maxKeywordsCount - state.keywords.length;             
             }
         }

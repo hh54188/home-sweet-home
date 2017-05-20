@@ -9,14 +9,14 @@
         name: 'KeywordRemainCharacters',
         computed: {
             showReminder() {
-                let state = this.$store.getters.state;                
+                let state = this.$store.getters;                
                 if (state.maxInputCharacters - state.inputKeyword.length < 10) {
                     return true;
                 }
                 return false;
             },            
             remainCharacters() {
-                let state = this.$store.getters.state;
+                let state = this.$store.getters;
                 return state.maxInputCharacters - state.inputKeyword.length;
             }
         }

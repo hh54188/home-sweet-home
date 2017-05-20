@@ -1,6 +1,7 @@
 <template>
-    <div v-bind:class="{'loading': this.$store.getters.state.loading}" class="column ten wide ui form">
-        <MyTitle></MyTitle>
+    <div v-bind:class="{'loading': this.$store.getters.loading}" class="column ten wide ui form">
+        <!--<MyTitle></MyTitle>-->
+        <ModalError ></ModalError>
         <div class="field">
             <SearchInput></SearchInput>
         </div>
@@ -13,12 +14,12 @@
             <!--<a class="item" data-tab="fav"><span>收藏</span></a>-->
         </div>
         <div class="ui bottom attached active tab segment" data-tab="latest">
-            <List :data="this.$store.getters.state.latestResult.data"></List>
-            <Pagination :data="this.$store.getters.state.latestResult.pagination"></Pagination>
+            <List :data="this.$store.getters.latestResult.data"></List>
+            <Pagination :data="this.$store.getters.latestResult.pagination"></Pagination>
         </div>
         <div class="ui bottom attached tab segment" data-tab="search">
             <List></List>
-            <Pagination :data="this.$store.getters.state.searchResult.pagination"></Pagination>     
+            <Pagination :data="this.$store.getters.searchResult.pagination"></Pagination>     
         </div>
         <!--<div class="ui bottom attached tab segment" data-tab="fav">
             <List></List>
@@ -34,6 +35,7 @@
     import KeywordRemainCharacters from './KeywordRemainCharacters.vue';
     import List from './List.vue';
     import Pagination from './Pagination.vue';
+    import ModalError from './Modals/ModalError.vue';
 
     export default {
         name: "App",
@@ -43,7 +45,8 @@
             SearchInput,
             KeywordRemainCharacters,
             List,
-            Pagination
+            Pagination,
+            ModalError
         },
         mounted: function () {
             $('#my-tab .item').tab();
