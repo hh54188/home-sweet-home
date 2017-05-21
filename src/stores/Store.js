@@ -1,21 +1,20 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { mapGetters } from 'vuex'
 
 import {moduleSearch} from './ModuleSearch.js'
 import {moduleKeywords} from './ModuleKeywords.js'
 import {moduleLatest} from './ModuleLatest.js'
+import {moduleUI} from './ModuleUI.js'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        loading: false,
-        errorHappened: true, 
+ 
     },
     mutations: {
-        UPDATE_LOADING_STATE(state, val) {
-            state.loading = val;
-        }
+
     },
     actions: {
 
@@ -23,11 +22,13 @@ export default new Vuex.Store({
     modules: {
         moduleSearch,
         moduleKeywords,
-        moduleLatest
+        moduleLatest,
+        moduleUI
     },
     getters: {
-        loading: state => state.loading,
-        errorHappened: state => state.errorHappened,
+        loading: state => state.moduleUI.loading,
+        errorHappened: state => state.moduleUI.errorHappened,
+        selectedTabName: state => state.moduleUI.selectedTabName,
 
         searchResult: state => state.moduleSearch.searchResult,
         latestResult: state => state.moduleLatest.latestResult,

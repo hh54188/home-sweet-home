@@ -28,17 +28,20 @@ export const moduleKeywords = {
         fetch({commit, state}) {
             commit('UPDATE_LOADING_STATE', true);
             let keywords = state.keywords;
+
             fetch('/api/search/', {
                 method: 'post',
                 body: JSON.stringify({
                     "keywords": keywords
                 })
             }).then((response) => {
-                commit('UPDATE_LOADING_STATE', false);                
-                debugger
-            }).catch((response) => {
-                commit('UPDATE_LOADING_STATE', false);                                
-                debugger
+                commit('UPDATE_LOADING_STATE', false);     
+                if (response && response.status !== 200) {
+                    return;
+                }
+                return response.text();
+            }).then((data) => {
+                console.log(data);
             })
         },
         updateInputKeyword ({commit}, text) {
