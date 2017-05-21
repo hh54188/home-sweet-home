@@ -25,39 +25,20 @@ export const moduleKeywords = {
         }        
     },
     actions: {
-        fetch({commit, state}) {
-            commit('UPDATE_LOADING_STATE', true);
-            let keywords = state.keywords;
-
-            fetch('/api/search/', {
-                method: 'post',
-                body: JSON.stringify({
-                    "keywords": keywords
-                })
-            }).then((response) => {
-                commit('UPDATE_LOADING_STATE', false);     
-                if (response && response.status !== 200) {
-                    return;
-                }
-                return response.text();
-            }).then((data) => {
-                console.log(data);
-            })
-        },
         updateInputKeyword ({commit}, text) {
             commit('UPDATE_INPUT_KEYWORD', text);
         },
         submitInputKeyword({dispatch, commit}) {
             commit('SUBMIT_INPUT_KEYWORD');
-            dispatch('fetch');
+            dispatch('search');
         },
-        deleteKeyword({commit}, word) {
+        deleteKeyword({dispatch, commit}, word) {
             commit('DELETE_KEYWORD', word);
-            dispatch('fetch');            
+            dispatch('search');            
         },
-        deleteAllKeywords({commit}) {
+        deleteAllKeywords({dispatch, commit}) {
             commit('DELETE_ALL_KEYWORDS');
-            dispatch('fetch');            
+            dispatch('search');            
         }        
     }      
 }

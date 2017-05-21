@@ -1,5 +1,5 @@
 <template>
-	<div id="modal-error" class="ui small modal">
+	<div ref="modalError" id="modal-error" class="ui small modal">
 	  	<div class="ui header">
 	  		<span>出错啦</span>
 	  	</div>

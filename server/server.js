@@ -10,8 +10,40 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 })); 
 
 app.post('/api/search', (req, res) => {
-    // console.log(req);
-    res.send('Hello');
+    res.send(JSON.stringify({
+        data: [{
+            id: '1',
+            title: 'Hello Test',
+            link: 'http://example.com'
+        }],
+        pagination: {
+            total: 15,
+            cur: 7
+        }
+    }));
+});
+
+app.get('/api/latest', (req, res) => {
+    res.send(JSON.stringify({
+        data: [{
+            id: '1',
+            title: 'Hello Test',
+            link: 'http://example.com'
+        }],
+        pagination: {
+            total: 15,
+            cur: 7
+        }
+    }));
+});
+
+app.use(function (req, res, next) {
+	res.status(404).send("Sorry can't find that!")
+});
+
+app.use(function (err, req, res, next) {
+	console.error(err.stack)
+  	res.status(500).send('Something broke!')
 })
 
 app.listen(80);
