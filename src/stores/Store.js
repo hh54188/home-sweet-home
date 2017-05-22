@@ -29,6 +29,7 @@ export default new Vuex.Store({
         loading: state => state.moduleUI.loading,
         errorHappened: state => state.moduleUI.errorHappened,
         selectedTabName: state => state.moduleUI.selectedTabName,
+        modalErrorIsShow: state => state.moduleUI.modalErrorIsShow,
 
         searchResult: state => state.moduleSearch.searchResult,
         latestResult: state => state.moduleLatest.latestResult,

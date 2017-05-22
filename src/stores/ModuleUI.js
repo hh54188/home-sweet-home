@@ -5,7 +5,6 @@ export const moduleUI = {
         selectedTabName: 'latest',
 
         modalErrorIsShow: false
-
     },
     mutations: {
         UPDATE_LOADING_STATE(state, val) {
@@ -23,12 +22,10 @@ export const moduleUI = {
             commit('SELECT_TAB', name);
         },
         showModalError({commit}) {
-            // commit('TOGGLE_MODEAL_ERROR', true);
-            // $('#modal-error').modal('show');
+            commit('TOGGLE_MODEAL_ERROR', true);
         },
-        hideModalError() {
-            // commit('TOGGLE_MODEAL_ERROR', false);            
-            // $('#modal-error').modal('hide');            
+        hideModalError({commit}) {
+            commit('TOGGLE_MODEAL_ERROR', false);            
         }        
     }
 }

@@ -30,15 +30,15 @@ export const moduleKeywords = {
         },
         submitInputKeyword({dispatch, commit}) {
             commit('SUBMIT_INPUT_KEYWORD');
-            dispatch('search');
+            dispatch('searchNewKeywords');
         },
         deleteKeyword({dispatch, commit}, word) {
             commit('DELETE_KEYWORD', word);
-            dispatch('search');            
+            dispatch('searchNewKeywords');            
         },
         deleteAllKeywords({dispatch, commit}) {
             commit('DELETE_ALL_KEYWORDS');
-            dispatch('search');            
+            dispatch('searchNewKeywords');            
         }        
     }      
 }

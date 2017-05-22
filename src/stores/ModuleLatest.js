@@ -30,19 +30,23 @@ export const moduleLatest = {
     mutations: {
         FILL_LATEST_RESULT(state, result) {
             state.latestResult = result;
-        }        
+        },
+        LATEST_RESULT_PAGING(state, pageNum) {
+            state.latestResult.pagination.cur = pageNum;
+        }
     },
     actions: {
-        refreshLatest({dispatch, commit, state}, pageNum) {
+        latestResultPaging({dispatch, commit}, pageNum) {
+            commit('LATEST_RESULT_PAGING', pageNum);
+            dispatch('refreshLatest');
+        },
+        refreshLatest({dispatch, commit, state}) {
             commit('UPDATE_LOADING_STATE', true);
 
-            pageNum = pageNum || state.latestResult.pagination.cur || 1;
+            let pageNum = state.latestResult.pagination.cur;
             
-            fetch('/api/latest/', {
-                method: 'post',
-                body: JSON.stringify({
-                    pageNum
-                })
+            fetch('/api/latest?page=' + pageNum, {
+                method: 'get',
             }).then((response) => {
                 commit('UPDATE_LOADING_STATE', false);     
                 if (response && response.status !== 200) {

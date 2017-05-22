@@ -2,6 +2,7 @@
   "name": "home-sweet-home",
   "version": "0.0.1",
   "dependencies": {
-    "semantic": "semantic-ui#^2.2.10"
+    "semantic": "semantic-ui#^2.2.10",
+    "velocity": "^1.5.0"
   }
 }

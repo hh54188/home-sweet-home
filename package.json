@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "dependencies": {
     "body-parser": "^1.17.2",
-    "express": "^4.15.3",
+    "express": "^4.15.0",
     "vue": "^2.3.3",
     "vuex": "^2.3.1"
   },

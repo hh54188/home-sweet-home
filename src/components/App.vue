@@ -2,6 +2,7 @@
     <div v-bind:class="{'loading': this.$store.getters.loading}" class="column ten wide ui form">
         <!--<MyTitle></MyTitle>-->
         <ModalError ></ModalError>
+        <Dimmer></Dimmer>
         <div class="field">
             <SearchInput></SearchInput>
         </div>
@@ -23,11 +24,11 @@
         </div>
         <div v-bind:class="{'active': this.$store.getters.selectedTabName === 'latest'}" class="ui bottom attached tab segment" data-tab="latest">
             <List :data="this.$store.getters.latestResult.data"></List>
-            <Pagination :data="this.$store.getters.latestResult.pagination"></Pagination>
+            <Pagination :pageAction="'latestResultPaging'" :data="this.$store.getters.latestResult.pagination"></Pagination>
         </div>
         <div v-bind:class="{'active': this.$store.getters.selectedTabName === 'search'}" class="ui bottom attached tab segment" data-tab="search">
             <List :data="this.$store.getters.searchResult.data"></List>
-            <Pagination :pageAction="'search'" :data="this.$store.getters.searchResult.pagination"></Pagination>     
+            <Pagination :pageAction="'searchResultPaging'" :data="this.$store.getters.searchResult.pagination"></Pagination>     
         </div>
         <div v-bind:class="{'active': this.$store.getters.selectedTabName === 'fav'}" class="ui bottom attached tab segment" data-tab="fav">
             <!--<List></List>-->
@@ -43,7 +44,9 @@
     import KeywordRemainCharacters from './KeywordRemainCharacters.vue';
     import List from './List.vue';
     import Pagination from './Pagination.vue';
+
     import ModalError from './Modals/ModalError.vue';
+    import Dimmer from './Modals/Dimmer.vue';
 
     export default {
         name: "App",
@@ -54,7 +57,8 @@
             KeywordRemainCharacters,
             List,
             Pagination,
-            ModalError
+            ModalError,
+            Dimmer
         },
         methods: {
             selectTab(tabName) {

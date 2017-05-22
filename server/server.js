@@ -3,13 +3,20 @@ const path = require('path');
 const bodyParser = require('body-parser')
 const app = express();
 
-app.use(express.static('.'));
+// For express 4.x
 app.use(bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
     extended: true
-})); 
+}));
+
+app.use(express.static('.'));
+
 
 app.post('/api/search', (req, res) => {
+
+    let keywords = req.body.keywords;
+    let page = req.body.page;
+
     res.send(JSON.stringify({
         data: [{
             id: '1',
@@ -18,12 +25,13 @@ app.post('/api/search', (req, res) => {
         }],
         pagination: {
             total: 15,
-            cur: 7
+            cur: parseInt(page, 10)
         }
     }));
 });
 
 app.get('/api/latest', (req, res) => {
+
     res.send(JSON.stringify({
         data: [{
             id: '1',
@@ -32,7 +40,7 @@ app.get('/api/latest', (req, res) => {
         }],
         pagination: {
             total: 15,
-            cur: 7
+            cur: parseInt(req.query.page, 10)
         }
     }));
 });
