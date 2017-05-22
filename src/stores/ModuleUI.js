@@ -4,7 +4,7 @@ export const moduleUI = {
         errorHappened: false, 
         selectedTabName: 'latest',
 
-        modalErrorIsShow: false
+        modalErrorIsShow: true
     },
     mutations: {
         UPDATE_LOADING_STATE(state, val) {

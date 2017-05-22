@@ -1,5 +1,6 @@
 <template>
-	<div id="modal-error" v-bind:class="{'active': this.$store.getters.modalErrorIsShow}" class="ui small modal center">
+	<transition name="fade">
+	<div v-if="this.$store.getters.modalErrorIsShow" id="modal-error" v-bind:class="{'active': this.$store.getters.modalErrorIsShow}" class="ui small modal center">
 	  	<div class="ui header">
 	  		<span>出错啦</span>
 	  	</div>
@@ -14,6 +15,7 @@
 	    	</div>
 	  	</div>
 	</div>
+	</transition>
 </template>
 
 <script>
@@ -32,5 +34,11 @@
 		position: fixed;
 		top: 50%;
 		transform: translateY(-50%);
+	}
+	.fade-enter-active, .fade-leave-active {
+		transition: opacity .5s;
+	}
+	.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+		opacity: 0;
 	}
 </style>
